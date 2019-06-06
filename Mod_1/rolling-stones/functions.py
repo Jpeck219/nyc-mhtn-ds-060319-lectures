@@ -1,6 +1,5 @@
 import csv
 from collections import Counter
-import re
 
 with open('data.csv') as f:
         # we are using DictReader because we want our information to be in dictionary format.
@@ -122,9 +121,7 @@ def most_pop_word_albums():
     wc = Counter(title_string.split())
     #print(wc)
     return wc.most_common(1)[0][0]
-print(most_pop_word_albums())
-
-
+#print(most_pop_word_albums())
 
 
 #Histogram of albums by decade - Returns a histogram with each decade pointing
@@ -134,3 +131,33 @@ print(most_pop_word_albums())
 #Histogram by genre - Returns a histogram with each genre pointing to the
 #number of albums that are categorized as being in that genre
 # def hist_genre
+
+
+# open the text file in read
+text_file = open('top-500-songs.txt', 'r')
+# read each line of the text file
+# here is where you can print out the lines to your terminal and get an idea
+# for how you might think about re-formatting the data
+lines = text_file.readlines()
+
+#print(lines)
+
+#take read text file and sort into list of dictionaries
+#1) loop through list for each element (in this case each song).
+#2) split each element into individual list (for each element)
+#3) make each element a dictionary with keys
+#4) add each dictionary to list of dictionaries
+
+def list_of_dict_songs(lines):
+    song_dict_list = []
+    for line in lines:
+        split_song = line.split('\t')
+        song_dict = {
+        'rank' : split_song[0],
+        'name' : split_song[1],
+        'artist' : split_song[2],
+        'year' : split_song[3].replace('\n', '')}
+        song_dict_list.append(song_dict)
+    return song_dict_list
+
+#print(list_of_dict_songs(lines))

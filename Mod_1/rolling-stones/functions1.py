@@ -1,5 +1,6 @@
 import csv
 from collections import Counter
+import json
 
 with open('data.csv') as f:
         # we are using DictReader because we want our information to be in dictionary format.
@@ -203,6 +204,11 @@ def list_of_dict_songs(lines):
 # print(all_artists(rolling_stones_list))
 # print()
 # print(all_artists(list_of_dict_songs(lines)))
+
+file = open('track_data.json', 'r')
+json_data = json.load(file)
+
+print(json_data)
 
 # albumWithMostTopSongs - returns the name of the artist and album that has that
 # most songs featured on the top 500 songs list
